@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Tip calculator app</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+
+
+   @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+    .attribution { font-size: 11px; text-align: center;display:none }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    #container {
+      background-color:  hsl(185, 41%, 84%);
+      /* max-width: 150vh; */
+      height: 60em;
+      position: relative;
+      padding-top: 20%;
+      margin: 0 auto;
+      /* margin-top: 3%; */
+      font-family: 'Space Mono', monospace;
+      font-size: 15px;
+
+
+    }
+    #con1 {
+      width:55em;
+      height: 31em;
+      background-color:hsl(0, 0%, 100%);
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: row;
+
+
+      font-family: 'Space Mono', monospace;
+
+
+
+
+
+
+    }
+    #conn {
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+
+
+
+    }
+    #con2 {
+      height: 25em;
+      width: 24em;
+      background-color: hsl(183, 100%, 15%);
+      border-radius: 15px;
+      padding: 5%;
+      margin: 15px;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+
+
+
+    }
+    #con3 {
+      height: 25em;
+      width: 24em;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      padding: 1%;
+      font-family: 'Space Mono', monospace;
+      background-color: hsl(0, 0%, 100%);
+      border-radius: 15px;
+      margin: 10px;
+
+
+
+    }
+    * {
+      box-sizing: border-box;
+    }
+    label {
+      text-align: left;
+
+    }
+    #input1 {
+      border-radius: 5px;
+      width: 100%;
+      margin-bottom: 10px;
+      height: 40px;
+      border: none;
+      background-color: hsl(189, 41%, 97%);
+      text-align: right;
+
+
+
+
+
+    }
+    #input2 {
+      border-radius: 5px;
+      width: 100%;
+      margin-bottom: 10px;
+      /* margin-top: -20px; */
+      height: 40px;
+      border: none;
+      background-color: hsl(189, 41%, 97%);
+      text-align: right;
+      border-color: yellow;
+
+    }
+    #table {
+      left: 0;
+      height: 8em;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+
+      display: table;
+      table-layout: inherit;
+
+
+
+
+    }
+    #abc {
+      width: 95px;
+      height: 48px;
+      display:table-row;
+      table-layout: inherit;
+
+
+      margin-right: 29px;
+      margin-top: 28px;
+      border: none;
+      font-family: 'Space Mono', monospace;
+      color: white;
+      border-radius: 8px;
+      background-color: hsl(183, 100%, 15%);
+
+    }
+    #s {
+      width: 95px;
+      height: 48px;
+      display:table-row;
+      table-layout: inherit;
+      margin-right: 29px;
+      margin-top: 28px;
+      border: none;
+      font-family: 'Space Mono', monospace;
+      color: white;
+      border-radius: 8px;
+      background-color: hsl(183, 100%, 15%);
+    }
+    #p{
+      width: 95px;
+      height: 48px;
+      display:table-row;
+      table-layout: inherit;
+      margin-top: 28px;
+      border: none;
+      font-family: 'Space Mono', monospace;
+      color: white;
+      border-radius: 8px;
+      background-color: hsl(183, 100%, 15%);
+    }
+    #r {
+      width: 95px;
+      height: 48px;
+      display:table-row;
+      table-layout: inherit;
+      /* margin-right: 1.9em;
+      margin-bottom: 18px;
+      margin-top: 5px; */
+
+      margin-top: 28px;
+      border: none;
+      font-family: 'Space Mono', monospace;
+      color: white;
+      border-radius: 8px;
+    }
+   #reset {
+      width: 95%;
+      margin-top: 100px;
+      background-color:hsl(172, 67%, 45%);
+      font-size: 25px;
+      border-radius: 8px;
+      height: 2em;
+      border: none;
+    }
+    #abc:hover, #reset:hover {
+      color: black;
+      background-color:hsl(186, 14%, 43%)
+    }
+    #abc:active, #reset:active a {
+      color: black;
+      background-color:hsl(172, 67%, 45%);
+
+    }
+    #output {
+      align-self: right;
+      display:flex ;
+      width: 115px;
+      position: relative;
+      height: 70px;
+      margin-left: 65%;
+      font-size:   30px;
+      margin-top: -75px;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      background-color: hsl(183, 100%, 15%);
+      color: hsl(172, 67%, 45%);
+      border: none;
+      text-decoration-color: hsl(172, 67%, 45%);
+
+
+
+
+
+    }
+    #output1 {
+      align-self: right;
+      display:flex ;
+      width: 117px;
+      position: relative;
+      height: 70px;
+      margin-left: 65%;
+      font-size: 30px;
+      flex-shrink: 2;
+      margin-top: -75px;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      background-color: hsl(183, 100%, 15%);
+      color: hsl(172, 67%, 45%);
+      border: none;
+
+
+    }
+
+    ::placeholder {
+      color: hsl(172, 67%, 45%);
+    }
+    ::-ms-input-placeholder  {
+      color: hsl(172, 67%, 45%);
+    }
+    #logo {
+      margin: auto;
+      top: 10%;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+    #input2:active, #input1:active{
+      border: 2px solid hsl(172, 67%, 45%);
+
+    }
+    label {
+      color: hsl(183, 100%, 15%);
+      color:hsl(183, 100%, 15%) ;
+      /* color: hsl(186, 14%, 43%); */
+      /* color: hsl(184, 14%, 56%); */
+      /* color: hsl(185, 41%, 84%); */
+      /* color: hsl(189, 41%, 97%); */
+    }
+    @media (max-width: 768px) {
+    #container {
+
+      width: 25em;
+      display: flex;
+      flex-direction: row;
+      height:40em;
+      margin-top: 0;
+
+   }
+ #con1 {
+
+
+  width: 24.99em;
+  height: 49em;
+  display: flex;
+  flex-direction: column;
+  top: 30%;
+
+
+
+  padding: 0;
+
+   margin: 0;
+
+ }
+ #conn {
+  flex-direction: column;
+  left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   margin: 0;
+   border: 0;
+   padding: 0;
+   display: flex;
+
+
+
+
+
+
+
+ }
+ #con2 {
+
+  height: 15.5em;
+  margin: 0;
+  padding: 10px;
+  position: relative;
+  width: 21.97em;
+  padding: 2em;
+  margin: 0 auto;
+
+  border: 0;
+
+
+
+ }
+ #con3 {
+  width: 24.97em;
+  height:30em;
+  margin: 0;
+  border: 0;
+  position: relative;
+  padding: 7%;
+  margin-bottom: 45px;
+
+
+
+
+
+ }
+ #abc {
+ display: table-column;
+ margin-left: 0px;
+ margin-bottom: 5px;
+ width: 157px;
+ margin-right: 0px;
+
+
+
+ }
+ #p{
+  display: table-column;
+ margin-left: 0px;
+ margin-bottom: 5px;
+ width: 157px;
+ margin-right: 0px;
+ }
+ #r {
+  display: table-column;
+ margin-left: 8px;
+ margin-bottom: 5px;
+ width: 157px;
+
+ }
+ #reset{
+  margin-top: 20px;
+ }
+ #s{
+  display: table-column;
+ margin-left: 8px;
+ margin-bottom: 5px;
+ width: 157px;
+ margin-right: 0px;
+ }
+
+ #output, #output1 {
+  margin-left: 180px;
+ }
+#input1, #input2 {
+   width: 100%;
+ }
+ #table {
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 100%;
+
+
+ }
+}
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+<section id="container">
+  <img  src="./images/logo.svg" alt="split" style="height: 100px;"id="logo">
+  <div id="con1">
+    <div id="conn">
+      <div id="con3">
+
+        <label for="input">Bill</label><span id="ale" style="float:right ;color: darkorange;"></span>
+        <input  id="input1" type="text" id="input" required="required" oninvalid="this.setCustomValidity('withinovation')" onvalid="this.setCustomValidity('')" name="input1" placeholder="0"style="background-image: url(./images/icon-dollar.svg); background-repeat: no-repeat;background-position: 20px;padding: 15px;" >
+        <br/><br/>
+        <form id="form1" name="btn">
+        <label for="btn"  > Select Tip %</label>
+        <br/>
+        <div id ="table">
+          <input id="abc" type="button"  value="5%" onclick="tip()">
+          <input id="s" value="10&#37" type="button" onclick="tip1()">
+          <input id="p" value="15%" type="button"   onclick="tip2()" >
+          <input id="s" value = "20%" type="button"   onclick="tip3()">
+          <input id="abc" value="25%" type="button"   onclick="tip4()">
+          <input id="r" value="" type="text" name="r" style="background-color:hsl(189, 41%, 97%);color: black;text-align: center;"placeholder="custom" class="r" onkeyup="tip5()" >
+      </div>
+        </form>
+        <br/><br/><br/>
+
+
+
+
+
+
+
+
+        <label for ="input">Number of People</label><span id="ales" style="float:right ;color: darkorange;"></span>
+        <input id="input2" type="text" id="input" inputmode="numeric" name="input2"  placeholder="0"style="background-image: url(./images/icon-person.svg); background-repeat: no-repeat;background-position: 20px;padding: 15px;">
+      </div>
+
+      <div id="con2">
+
+        <label for="output"><p style="color: white;">Tip Amount<br>
+        <span style="color:hsl(184, 14%, 56%);">/ person
+        </span></p> </label>
+        <input id="output" placeholder="$0.00" name="output" disabled>
+
+        <label for="output1"><p style="margin-top:20px;color: white;"> Total <br>
+        <span style="color:hsl(184, 14%, 56%);">/ person</span></p></label>
+        <input id="output1" placeholder="$0.00" disabled name="output1">
+
+        <button type="reset" id="reset" value="reset" onclick="reset();"> Reset</button>
+      </div>
+   </div>
+  </div>
+
+
+      <div class="attribution">
+       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+       Coded by <a href="git" target="_blank">Abubakar</a>.
+
+
+
+</section>
+
+  <script>
+
+
+   var x;
+   var y;
+   var z;
+
+   const tip = () =>{
+    let input1 = document.getElementById("input1").value;
+    let input2 = document.getElementById("input2").value;
+    if (input1 == "") {
+     document.getElementById("ale").innerHTML = "Can't be zero!";
+     document.getElementById("input1").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ale").innerHTML = ""
+      document.getElementById("input1").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    if (input2 == "") {
+      document.getElementById("ales").innerHTML = "Can't be zero!"
+      document.getElementById("input2").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ales").innerHTML = ""
+      document.getElementById("input2").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    var x = input1/input2;
+    var y = x * 0.05;
+    var z = y + x;
+    var w = "$" + z.toFixed(2);
+    var v = "$" + y.toFixed(3);
+    document.getElementById("output").value = v;
+    document.getElementById("output1").value = w;
+
+   }
+   const tip1 = () =>{
+    let input1 = document.getElementById("input1").value;
+    let input2 = document.getElementById("input2").value;
+    if (input1 == "") {
+     document.getElementById("ale").innerHTML = "Can't be zero!";
+     document.getElementById("input1").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ale").innerHTML = ""
+      document.getElementById("input1").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    if (input2 == "") {
+      document.getElementById("ales").innerHTML = "Can't be zero!"
+      document.getElementById("input2").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ales").innerHTML = ""
+      document.getElementById("input2").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    var x = input1/input2;
+    var y = x * 0.10;
+    var z = y + x;
+      var v = "$" + y.toFixed(3);
+      var w = "$" + z.toFixed(2);
+
+    document.getElementById("output").value = v;
+    document.getElementById("output1").value = w;
+
+   }
+   const tip2 = () =>{
+    let input1 = document.getElementById("input1").value;
+    let input2 = document.getElementById("input2").value;
+
+
+    if (input1 == "") {
+     document.getElementById("ale").innerHTML = "Can't be zero!";
+     document.getElementById("input1").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ale").innerHTML = ""
+      document.getElementById("input1").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    if (input2 == "") {
+      document.getElementById("ales").innerHTML = "Can't be zero!"
+      document.getElementById("input2").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ales").innerHTML = ""
+      document.getElementById("input2").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    var x = input1 / input2;
+    var y =  x * 0.15;
+    var z = y + x;
+    var w = "$" + z.toFixed(2);
+    var v = "$" + y.toFixed(3);
+
+    document.getElementById("output").value = v;
+    document.getElementById("output1").value = w;
+
+   }
+   const tip3 = () =>{
+    let input1 = document.getElementById("input1").value;
+    let input2 = document.getElementById("input2").value;
+
+
+    if (input1 == "") {
+     document.getElementById("ale").innerHTML = "Can't be zero!";
+     document.getElementById("input1").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ale").innerHTML = ""
+      document.getElementById("input1").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    if (input2 == "") {
+      document.getElementById("ales").innerHTML = "Can't be zero!"
+      document.getElementById("input2").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ales").innerHTML = ""
+      document.getElementById("input2").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    var x = input1 / input2;
+    var y = x * 0.20;
+    var z = y + x;
+    var w = "$" + z.toFixed(2);
+    var v = "$" + y.toFixed(3);
+
+    document.getElementById("output").value = v;
+    document.getElementById("output1").value = w;
+
+   }
+   const tip4 = () =>{
+    let input1 = document.getElementById("input1").value;
+    let input2 = document.getElementById("input2").value;
+
+    if (input1 == "") {
+     document.getElementById("ale").innerHTML = "Can't be zero!";
+     document.getElementById("input1").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ale").innerHTML = ""
+      document.getElementById("input1").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    if (input2 == "") {
+      document.getElementById("ales").innerHTML = "Can't be zero!"
+      document.getElementById("input2").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ales").innerHTML = ""
+      document.getElementById("input2").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    var x = input1 / input2;
+    var y = x * 0.25;
+    var z = y + x;
+    var w = "$" + z.toFixed(2);
+    var v = "$" + y.toFixed(3);
+
+    document.getElementById("output").value = v;
+    document.getElementById("output1").value = w;
+
+   }
+   const tip5 = () =>{
+    let input1 = document.getElementById("input1").value;
+    let input2 = document.getElementById("input2").value;
+
+    if (input1 == "") {
+     document.getElementById("ale").innerHTML = "Can't be zero!";
+     document.getElementById("input1").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ale").innerHTML = ""
+      document.getElementById("input1").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    if (input2 == "") {
+      document.getElementById("ales").innerHTML = "Can't be zero!"
+      document.getElementById("input2").style.border = " 2px solid darkorange";
+    }
+    else {
+      document.getElementById("ales").innerHTML = ""
+      document.getElementById("input2").style.border = " 2px solid  hsl(172, 67%, 45%)";
+    }
+    document.getElementById("r").style.border = " 2px solid hsl(172, 67%, 45%)";
+    var x = input1 / input2;
+    var r = document.getElementById("r").value;
+    var o = r/100
+    var y = x * o
+    var z = y + x;
+    var w = "$" + z.toFixed(2);
+    var v = "$" + y.toFixed(3);
+
+    document.getElementById("output").value = v;
+    document.getElementById("output1").value = w;
+
+  }
+
+  function reset() {
+    document.getElementById("input1").value = "";
+    document.getElementById("input2").value = "";
+    document.getElementById("output").value = "";
+    document.getElementById("output1").value = "";
+    document.getElementById("r").value = "";
+  }
+  function clicks () {
+    document.getElementById("input1").style.border = "2px solid hsl(172, 67%, 45%)";
+
+  }
+  function clicks1 () {
+    document.getElementById("input2").style.border = "2px solid hsl(172, 67%, 45%)";
+  }
+
+
+
+  </script>
+
+</body>
+</html>
